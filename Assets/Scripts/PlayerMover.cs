@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
 {
+    //stevanas#1997 is my discord for easier communication
+
     public float walkSpeed;
     public float sprintSpeed;
     [HideInInspector] public Rigidbody2D rb;
