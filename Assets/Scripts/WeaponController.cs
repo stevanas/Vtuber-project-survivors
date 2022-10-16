@@ -6,53 +6,23 @@ public class WeaponController : MonoBehaviour
 {
     public WeaponClass weaponObject;
     public Transform shootPoint;
-    bool canShoot = true;
-    InputHandler input;
-    float lastShot;
+    GameObject bullet;
+    private float curveDeltaTime = 0.0f;
 
-    private void Start()
+    //public float angle;
+
+    public void Shoot(float angle)
     {
-        input = InputHandler.instance;
+        Vector3 pos = shootPoint.position;
+        pos += shootPoint.transform.up * (Mathf.Sin(Time.time * weaponObject.sinAngle) * weaponObject.waveRate);
+        bullet = Instantiate(weaponObject.bulletPrefab, pos, transform.rotation);
+        bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        bullet.GetComponent<BulletController>().StartBullet(weaponObject.bulletSpeed, weaponObject.damage, transform.root.gameObject);
     }
 
     private void Update()
     {
-        if(input.leftClickHeld)
-        {
-            if(!weaponObject.isAutomatic)
-            {
-                if (canShoot)
-                {
-                    canShoot = false;
-                    Shoot();
-                }
-            }
-            else
-            {
-                if(Time.time - lastShot > weaponObject.fireRate)
-                {
-                    lastShot = Time.time;
-                    canShoot = true;
-                }
-                if(canShoot)
-                {
-                    canShoot = false;
-                    Shoot();
-                }
-            }
-        }
-        else if(input.leftClickUp)
-        {
-            if(!weaponObject.isAutomatic)
-            {
-                canShoot = true;
-            }
-        }
+
     }
 
-    public void Shoot()
-    {
-        GameObject bullet = Instantiate(weaponObject.bulletPrefab, shootPoint.position, transform.rotation);
-        //bullet.transform.GetComponent<BulletController>().StartBullet();
-    }
 }

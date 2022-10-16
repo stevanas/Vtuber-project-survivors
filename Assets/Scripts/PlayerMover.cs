@@ -6,7 +6,7 @@ public class PlayerMover : MonoBehaviour
 {
     //stevanas#1997 is my discord for easier communication
 
-    public float walkSpeed;
+    //public float walkSpeed;
     public float sprintSpeed;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Vector2 move;
@@ -25,13 +25,15 @@ public class PlayerMover : MonoBehaviour
         input = InputHandler.instance;
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+
+        curSpeed = sprintSpeed;
     }
 
     private void Update()
     {
         move.x = input.xInput;
         move.y = input.yInput;
-        if(input.shiftHeld)
+        /*if(!input.leftClickHeld)
         {
             curState = movementState.sprinting;
             curSpeed = sprintSpeed;
@@ -40,7 +42,7 @@ public class PlayerMover : MonoBehaviour
         {
             curState = movementState.walking;
             curSpeed = walkSpeed;
-        }
+        }*/
     }
     private void FixedUpdate()
     {

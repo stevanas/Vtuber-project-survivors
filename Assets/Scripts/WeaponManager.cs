@@ -5,23 +5,60 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     //List<>
-    public GameObject curWeapon;
+    public WeaponController curWeapon;
     Vector2 mousePos;
     PlayerMover mover;
     Rigidbody2D weaponRb;
+    bool canShoot = true;
+    float lastShot;
+    InputHandler input;
+    float angle;
     private void Start()
     {
         mover = GetComponent<PlayerMover>();
         weaponRb = curWeapon.GetComponent<Rigidbody2D>();
+        input = InputHandler.instance;
+
     }
     private void Update()
     {
         mousePos = mover.cam.ScreenToWorldPoint(Input.mousePosition);
+        if (input.leftClickHeld)
+        {
+            if (!curWeapon.weaponObject.isAutomatic)
+            {
+                if (canShoot)
+                {
+                    canShoot = false;
+                    curWeapon.Shoot(angle);
+                }
+            }
+            else
+            {
+                if (Time.time - lastShot > curWeapon.weaponObject.fireRate)
+                {
+                    lastShot = Time.time;
+                    canShoot = true;
+                }
+                if (canShoot)
+                {
+                    canShoot = false;
+                    curWeapon.Shoot(angle);
+                }
+            }
+        }
+        else if (input.leftClickUp)
+        {
+            if (!curWeapon.weaponObject.isAutomatic)
+            {
+                canShoot = true;
+            }
+        }
     }
     private void FixedUpdate()
     {
         Vector2 lookDir = (mousePos - weaponRb.position).normalized;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         //Debug.Log(angle);
         curWeapon.transform.eulerAngles = new Vector3(0,0,angle);
     }
