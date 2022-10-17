@@ -23,35 +23,28 @@ public class WeaponManager : MonoBehaviour
     private void Update()
     {
         mousePos = mover.cam.ScreenToWorldPoint(Input.mousePosition);
-        if (input.leftClickHeld)
+
+
+        if(Time.time - lastShot > curWeapon.weaponObject.fireRate)
         {
-            if (!curWeapon.weaponObject.isAutomatic)
+            if(canShoot)
             {
-                if (canShoot)
+                if(input.leftClickHeld)
                 {
-                    canShoot = false;
+                    if (!curWeapon.weaponObject.isAutomatic)
+                    {
+                        canShoot = false;
+                    }
                     curWeapon.Shoot(angle);
+                    lastShot = Time.time;
                 }
             }
             else
             {
-                if (Time.time - lastShot > curWeapon.weaponObject.fireRate)
+                if(input.leftClickUp)
                 {
-                    lastShot = Time.time;
                     canShoot = true;
                 }
-                if (canShoot)
-                {
-                    canShoot = false;
-                    curWeapon.Shoot(angle);
-                }
-            }
-        }
-        else if (input.leftClickUp)
-        {
-            if (!curWeapon.weaponObject.isAutomatic)
-            {
-                canShoot = true;
             }
         }
     }

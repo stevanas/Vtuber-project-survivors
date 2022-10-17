@@ -18,4 +18,5 @@ public class WeaponClass : ScriptableObject
     public float sinAngle; //= 0 for staight line
     public float waveRate; //= 0 for staight line
     public bool isAutomatic;
+    public float inaccuracyAngle;
 }

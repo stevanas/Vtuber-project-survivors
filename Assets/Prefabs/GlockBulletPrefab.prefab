@@ -48,7 +48,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.8
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -69,9 +69,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4971829867176347231}
-  rate: 0.2
-  pathWaveHeight: 0.2
-  sinAngle: 10
+  rate: 0
+  pathWaveHeight: 0
+  sinAngle: 0
+  inaccuracyAngle: 0
 --- !u!61 &2737860790966282252
 BoxCollider2D:
   m_ObjectHideFlags: 0

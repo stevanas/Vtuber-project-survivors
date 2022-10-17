@@ -8,6 +8,7 @@ public class WeaponController : MonoBehaviour
     public Transform shootPoint;
     GameObject bullet;
     private float curveDeltaTime = 0.0f;
+    float inaccuracyAmount;
 
     //public float angle;
 
@@ -16,7 +17,8 @@ public class WeaponController : MonoBehaviour
         Vector3 pos = shootPoint.position;
         pos += shootPoint.transform.up * (Mathf.Sin(Time.time * weaponObject.sinAngle) * weaponObject.waveRate);
         bullet = Instantiate(weaponObject.bulletPrefab, pos, transform.rotation);
-        bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        inaccuracyAmount = Random.Range(-weaponObject.inaccuracyAngle, weaponObject.inaccuracyAngle);
+        bullet.transform.rotation = Quaternion.AngleAxis(angle + inaccuracyAmount, Vector3.forward);
         bullet.GetComponent<BulletController>().StartBullet(weaponObject.bulletSpeed, weaponObject.damage, transform.root.gameObject);
     }
 

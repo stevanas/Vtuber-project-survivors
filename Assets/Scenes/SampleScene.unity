@@ -1239,7 +1239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3745430986260231666, guid: ba18f99eb48b4624ba811913055d0583, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 54.420044
+      value: 54.41992
       objectReference: {fileID: 0}
     - target: {fileID: 3745430986260231666, guid: ba18f99eb48b4624ba811913055d0583, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2218,7 +2218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd4802318d96f649bf01b05565d81ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprintSpeed: 8
+  sprintSpeed: 3
   rb: {fileID: 0}
   move: {x: 0, y: 0}
   cam: {fileID: 0}
@@ -2978,6 +2978,18 @@ PrefabInstance:
     - target: {fileID: 3745430986260231667, guid: ba18f99eb48b4624ba811913055d0583, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745430986735174375, guid: ba18f99eb48b4624ba811913055d0583, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745430986735174375, guid: ba18f99eb48b4624ba811913055d0583, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3745430986735174375, guid: ba18f99eb48b4624ba811913055d0583, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 3745430987131061888, guid: ba18f99eb48b4624ba811913055d0583, type: 3}
       propertyPath: m_AnchorMax.x

@@ -13,6 +13,8 @@ public class BulletController : MonoBehaviour
     float curEval = 0;
     int bulletDamage;
     GameObject owner;
+
+    
     private void Start()
     {
         //rb = GetComponent<Rigidbody2D>();
@@ -21,6 +23,7 @@ public class BulletController : MonoBehaviour
 
     public void StartBullet(float bulletSpeed, int damage, GameObject entity)
     {
+
         rb.AddForce(transform.right * bulletSpeed);
         bulletDamage = damage;
         owner = entity;
@@ -40,5 +43,12 @@ public class BulletController : MonoBehaviour
         {
             collision.GetComponent<Entity>().OnDamaged(bulletDamage);
         }
+    }
+
+    private void Update()
+    {
+        //transform.up *= inacuraccyAmount;
+        //rb.AddForce(transform.up * inacuraccyAmount);
+
     }
 }
