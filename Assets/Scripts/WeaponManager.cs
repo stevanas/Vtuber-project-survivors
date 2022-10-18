@@ -23,13 +23,13 @@ public class WeaponManager : MonoBehaviour
     private void Update()
     {
         mousePos = mover.cam.ScreenToWorldPoint(Input.mousePosition);
-
-
+        
+        
         if(Time.time - lastShot > curWeapon.weaponObject.fireRate)
         {
-            if(canShoot)
+            if (canShoot)
             {
-                if(input.leftClickHeld)
+                if (input.leftClickHeld)
                 {
                     if (!curWeapon.weaponObject.isAutomatic)
                     {
@@ -37,11 +37,12 @@ public class WeaponManager : MonoBehaviour
                     }
                     curWeapon.Shoot(angle);
                     lastShot = Time.time;
+
                 }
             }
             else
             {
-                if(input.leftClickUp)
+                if (input.leftClickUp)
                 {
                     canShoot = true;
                 }

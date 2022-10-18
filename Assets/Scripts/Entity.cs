@@ -16,7 +16,7 @@ public class Entity : MonoBehaviour
 
     public virtual void OnDamaged(int damageAmount)
     {
-        Debug.Log("Damaged!");
+        //Debug.Log("Damaged!");
         curHealth -= damageAmount;
         if (curHealth <= 0)
         {

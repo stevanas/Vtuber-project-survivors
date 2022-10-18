@@ -11,9 +11,11 @@ public class enemy : Entity
 	[SerializeField] float stoppingDistance;
 	[SerializeField] GameObject bullet;
 	[SerializeField] Transform shootPoint;
-	[SerializeField] float shootingCooldown;
+	[SerializeField] float attackCooldown;
 	[SerializeField] float bulletSpeed;
 	[SerializeField] int damage;
+	[SerializeField] bool canFireBullets;
+	bool canAttack;
 
 	Rigidbody2D rgdbd2d;
 	float lastShot;
@@ -26,14 +28,25 @@ public class enemy : Entity
 		healthBar.value = maxHealth;
 	}
 
-    private void Update()
-    {
-        if(Time.time - lastShot > shootingCooldown)
+	private void Update()
+	{
+		if (Time.time - lastShot > attackCooldown)
+		{
+			if (canFireBullets)
+			{
+				lastShot = Time.time;
+				Shoot();
+			}
+			else
+            {
+				canAttack = true;
+            }
+		}
+		else
         {
-			lastShot = Time.time;
-			Shoot();
-        }
-    }
+			canAttack = false;
+		}
+	}
 
     private void FixedUpdate()
 	{
@@ -42,10 +55,16 @@ public class enemy : Entity
 		if (Vector2.Distance(targetDestination.position, transform.position) > stoppingDistance)
 		{
 			rgdbd2d.velocity = direction * speed;
+			canAttack = false;
 		}
 		else
         {
 			rgdbd2d.velocity = Vector2.zero;
+			if(canAttack)
+            {
+				lastShot = Time.time;
+				targetDestination.gameObject.GetComponent<Entity>().OnDamaged(damage);
+            }
         }
 	}
 

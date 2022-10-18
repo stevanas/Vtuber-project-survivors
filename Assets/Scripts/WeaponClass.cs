@@ -19,4 +19,7 @@ public class WeaponClass : ScriptableObject
     public float waveRate; //= 0 for staight line
     public bool isAutomatic;
     public float inaccuracyAngle;
+    [Space(10)]
+    public int magazineSize;
+    public float reloadTime;
 }

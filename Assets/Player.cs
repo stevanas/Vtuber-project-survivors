@@ -17,7 +17,7 @@ public class Player : Entity
 		base.OnDamaged(damageAmount);
 		healthBar
 			.DOValue(curHealth, 0.2f);
-		Debug.Log(transform.name + " damaged!");
+		//Debug.Log(transform.name + " damaged!");
 
 	}
 	public override void Die()
