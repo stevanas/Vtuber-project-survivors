@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Glock
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5129259628030209024, guid: db6553ef5873c5246a4b55ab62ad15d0, type: 3}
-  fireRate: 2
+  fireRate: 0.335
   bulletSpeed: 650
   damage: 10
   sinAngle: 0
